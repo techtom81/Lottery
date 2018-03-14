@@ -2,7 +2,7 @@
 
 namespace Lottery
 {
-    class Program
+    class LottoGame
     {
         static void Main(string[] args)
         {
@@ -26,7 +26,24 @@ namespace Lottery
 
             int[] numbersArr = { firstNum, secondNum, thirdNum, fourthNum, fifthNum, sixthNum };
             string numbersStr = String.Join(",", numbersArr);
-            Console.WriteLine("Thank you, your lottery numbers are "+numbersStr);
+            Console.WriteLine("Thank you, your lottery numbers are {0}", numbersStr);
+            
         }
+
+        private static int RandomNumber()
+        {
+            Random rand = new System.Random();
+            int newRand = rand.Next(1, 60); // return random number between 1 - 59
+            return newRand;
+        }
+
+        private static int Draw()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Console.WriteLine(RandomNumber());
+            }
+        }
+
     }
 }
