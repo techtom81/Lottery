@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Lottery
 {
@@ -8,7 +9,7 @@ namespace Lottery
         {
             Console.WriteLine("Please pick 6 unique numbers from 1-59");
             if (System.Diagnostics.Debugger.IsAttached) Console.ReadLine();
-            Console.WriteLine("Press any key to continue");
+            Console.WriteLine("Press any key to start");
             Console.ReadLine();
 
             Console.WriteLine("Please enter first number");
@@ -25,9 +26,17 @@ namespace Lottery
             int sixthNum = Convert.ToInt32(Console.ReadLine());
 
             int[] numbersArr = { firstNum, secondNum, thirdNum, fourthNum, fifthNum, sixthNum };
-            string numbersStr = String.Join(",", numbersArr);
+            string numbersStr = string.Join(",", numbersArr);
             Console.WriteLine("Thank you, your lottery numbers are {0}", numbersStr);
-            
+            Console.WriteLine("Press any key to start the draw, Good luck!");
+            Console.ReadLine();
+            int[] drawnNumbers = Draw();
+            List<string> drawnStr = new List<string>();
+            foreach (int number in drawnNumbers)
+            {
+                drawnStr.Add(number.ToString());
+            }
+            Console.WriteLine("The lottery numbers are {0}", string.Join(" ", drawnStr));
         }
 
         private static int RandomNumber()
@@ -37,12 +46,15 @@ namespace Lottery
             return newRand;
         }
 
-        private static int Draw()
+        private static int[] Draw()
         {
+            int[] winningNums = new int[6];
             for (int i = 0; i < 6; i++)
             {
-                Console.WriteLine(RandomNumber());
+                winningNums[i] = RandomNumber();
             }
+
+            return winningNums;
         }
 
     }
