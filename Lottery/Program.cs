@@ -11,21 +11,14 @@ namespace Lottery
             if (System.Diagnostics.Debugger.IsAttached) Console.ReadLine();
             Console.WriteLine("Press any key to start");
             Console.ReadLine();
+            int[] pickedNumbers = new int[6];
 
-            Console.WriteLine("Please enter first number");
-            int firstNum = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter second number");
-            int secondNum = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter third number");
-            int thirdNum = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter fourth number");
-            int fourthNum = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter fifth number");
-            int fifthNum = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter sixth number");
-            int sixthNum = Convert.ToInt32(Console.ReadLine());
-
-            int[] pickedNumbers = { firstNum, secondNum, thirdNum, fourthNum, fifthNum, sixthNum };
+            for (int i = 0; i < 6; i++)
+            {
+                Console.WriteLine("Please enter number");
+                pickedNumbers[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            
             string numbersStr = string.Join(",", pickedNumbers);
             Console.WriteLine("Thank you, your lottery numbers are {0}", numbersStr);
             Console.WriteLine("Press any key to start the draw, Good luck!");
