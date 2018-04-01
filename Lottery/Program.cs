@@ -11,12 +11,19 @@ namespace Lottery
             if (System.Diagnostics.Debugger.IsAttached) Console.ReadLine();
             Console.WriteLine("Press any key to start");
             Console.ReadLine();
+            String userInput;
             int[] pickedNumbers = new int[6];
 
             for (int i = 0; i < 6; i++)
             {
-                Console.WriteLine("Please enter number");
-                pickedNumbers[i] = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Pick a number");
+                userInput = Console.ReadLine();
+
+                while (!Int32.TryParse(userInput, out pickedNumbers[i]))
+                {
+                    Console.WriteLine("Not a valid number, try again.");
+                    userInput = Console.ReadLine();
+                }             
             }
             
             string numbersStr = string.Join(",", pickedNumbers);
