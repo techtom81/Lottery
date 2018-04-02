@@ -19,14 +19,27 @@ namespace Lottery
                 Console.WriteLine("Pick a number");
                 userInput = Console.ReadLine();
 
-                while (!Int32.TryParse(userInput, out pickedNumbers[i]))
+                if (Int32.TryParse(userInput, out int tempPickedNumber))
+                {
+                    if (tempPickedNumber > 59 || tempPickedNumber < 1)
+                    {
+                        Console.WriteLine("Number must be between 1 and 59, try again.");
+                        i--;
+                    }
+                    else
+                    {
+                        pickedNumbers[i] = tempPickedNumber;                       
+                    }
+                }
+                else
                 {
                     Console.WriteLine("Not a valid number, try again.");
-                    userInput = Console.ReadLine();
-                }             
+                    //userInput = Console.ReadLine();
+                    i--;
+                }                
             }
             
-            string numbersStr = string.Join(",", pickedNumbers);
+            string numbersStr = string.Join(" ", pickedNumbers);
             Console.WriteLine("Thank you, your lottery numbers are {0}", numbersStr);
             Console.WriteLine("Press any key to start the draw, Good luck!");
             Console.ReadLine();
@@ -38,7 +51,6 @@ namespace Lottery
                 drawnStr.Add(number.ToString());
             }
             Console.WriteLine("The lottery numbers are {0}", string.Join(" ", drawnStr));
-
             Console.WriteLine(Compare(pickedNumbers, drawnNumbers));
         }
 
